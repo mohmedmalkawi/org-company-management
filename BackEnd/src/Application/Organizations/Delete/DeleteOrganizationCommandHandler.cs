@@ -19,6 +19,7 @@ internal sealed class DeleteOrganizationCommandHandler(IApplicationDbContext con
             return Result.Failure(OrganizationErrors.NotFound(command.OrganizationId));
         }
 
+        organization.Raise(new OrganizationDeletedDomainEvent(organization.Id));
         context.Organizations.Remove(organization);
 
         return Result.Success();
