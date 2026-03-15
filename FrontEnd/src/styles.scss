@@ -1,0 +1,86 @@
+@use '@angular/material' as mat;
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-top: 16px;
+}
+
+.search-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.search-filters .filter-field {
+  min-width: 200px;
+  flex: 1 1 200px;
+}
+
+.search-filters > button {
+  margin-top: 6px;
+  height: 54px;
+  flex-shrink: 0;
+}
+
+.snackbar-success {
+  .mdc-snackbar__surface {
+    background: #2e7d32;
+  }
+}
+
+.snackbar-error {
+  .mdc-snackbar__surface {
+    background: #c62828;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 12px;
+  }
+
+  .search-filters {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .search-filters .filter-field {
+    min-width: 100%;
+    width: 100%;
+  }
+
+  .search-filters button {
+    width: 100%;
+  }
+
+  .form-actions {
+    flex-direction: column;
+
+    button {
+      width: 100%;
+    }
+  }
+}

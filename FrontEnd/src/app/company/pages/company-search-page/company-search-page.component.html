@@ -1,0 +1,53 @@
+<div class="page-header">
+  <h1>Company Definition</h1>
+  <button mat-flat-button color="accent" routerLink="/companies/add">
+    Add New Company
+  </button>
+</div>
+<h2>Company Inquiry</h2>
+<form [formGroup]="searchForm" class="search-filters">
+  <mat-form-field appearance="outline" class="filter-field">
+    <mat-label>Organization Name</mat-label>
+    <input
+      matInput
+      formControlName="organizationName"
+      [matAutocomplete]="orgAuto"
+    />
+    <mat-autocomplete #orgAuto="matAutocomplete">
+      <mat-option *ngFor="let opt of filteredOrgOptions$ | async" [value]="opt">
+        {{ opt }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="filter-field">
+    <mat-label>Company Name</mat-label>
+    <input matInput formControlName="companyName" />
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="filter-field">
+    <mat-label>Country</mat-label>
+    <input
+      matInput
+      formControlName="country"
+      [matAutocomplete]="countryAuto"
+    />
+    <mat-autocomplete #countryAuto="matAutocomplete">
+      <mat-option *ngFor="let opt of filteredCountryOptions$ | async" [value]="opt">
+        {{ opt }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="filter-field">
+    <mat-label>Company Code</mat-label>
+    <input matInput formControlName="companyCode" />
+  </mat-form-field>
+  <button mat-flat-button color="primary" type="button" (click)="search()">
+    Search
+  </button>
+</form>
+<h2>Companies List</h2>
+<app-reusable-table
+  [columns]="tableColumns"
+  [actions]="tableActions"
+  [data]="results"
+  [loading]="loading"
+></app-reusable-table>

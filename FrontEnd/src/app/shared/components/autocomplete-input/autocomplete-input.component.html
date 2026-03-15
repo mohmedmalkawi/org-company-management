@@ -1,0 +1,21 @@
+<mat-form-field appearance="outline" class="autocomplete-field">
+  <mat-label>{{ label }}</mat-label>
+  <input
+    type="text"
+    matInput
+    [matAutocomplete]="auto"
+    [formControl]="control"
+    [placeholder]="placeholder"
+    (blur)="onBlur()"
+    (input)="onInput()"
+  />
+  <mat-autocomplete
+    #auto="matAutocomplete"
+    (optionSelected)="onOptionSelect($event)"
+  >
+    <mat-option *ngFor="let option of filteredOptions$ | async" [value]="option">
+      {{ option }}
+    </mat-option>
+  </mat-autocomplete>
+  <mat-error *ngIf="control.hasError('required')">This field is required</mat-error>
+</mat-form-field>

@@ -1,0 +1,61 @@
+<h1>{{ editId ? 'Edit' : 'Add' }} Organization</h1>
+<form [formGroup]="form" (ngSubmit)="save()">
+  <div class="form-grid">
+    <mat-form-field appearance="outline">
+      <mat-label>Organization Name</mat-label>
+      <input matInput formControlName="name" />
+      <mat-error *ngIf="form.get('name')?.hasError('required')">
+        Organization name is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Organization Code</mat-label>
+      <input matInput formControlName="code" />
+      <mat-error *ngIf="form.get('code')?.hasError('required')">
+        Organization code is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Country</mat-label>
+      <input
+        matInput
+        formControlName="country"
+        [matAutocomplete]="countryAuto"
+      />
+      <mat-autocomplete #countryAuto="matAutocomplete">
+        <mat-option *ngFor="let opt of filteredCountryOptions$ | async" [value]="opt">
+          {{ opt }}
+        </mat-option>
+      </mat-autocomplete>
+      <mat-error *ngIf="form.get('country')?.hasError('required')">
+        Country is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Phone</mat-label>
+      <input matInput formControlName="phone" />
+      <mat-error *ngIf="form.get('phone')?.hasError('required')">
+        Phone is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Full Address</mat-label>
+      <input matInput formControlName="fullAddress" />
+      <mat-error *ngIf="form.get('fullAddress')?.hasError('required')">
+        Full address is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Creation Date</mat-label>
+      <input matInput formControlName="creationDate" readonly />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Updating Date</mat-label>
+      <input matInput formControlName="updatingDate" readonly />
+    </mat-form-field>
+  </div>
+  <div class="form-actions">
+    <button mat-button type="button" (click)="cancel()">Cancel</button>
+    <button mat-flat-button color="primary" type="submit">Save</button>
+  </div>
+</form>
