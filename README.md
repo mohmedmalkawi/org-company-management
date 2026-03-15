@@ -5,12 +5,20 @@ A full-stack application for managing organizations and companies, built with .N
 ## Tech Stack
 
 ### Backend
-- .NET 10 Web API
+- .NET 10 Web API (Minimal APIs)
 - Entity Framework Core (In-Memory)
 - Clean Architecture (Domain, Application, Infrastructure, Web.Api)
-- CQRS with Command/Query handlers
+- CQRS with Command/Query handlers (custom lightweight MediatR alternative for CQRS dispatching)
 - FluentValidation
-- Serilog structured logging
+- Decorator pattern for cross-cutting concerns (validation, unit of work)
+- Builder pattern for constructing search queries
+- Result pattern for explicit error handling (no exceptions for control flow)
+- Domain Events with reflection-based dispatcher
+- Scrutor for assembly scanning and DI registration
+- Serilog structured logging with Seq sink
+- Swagger / OpenAPI documentation
+- Architecture Tests (layer dependency verification with NetArchTest)
+- Docker multi-stage build
 
 ### Frontend
 - Angular 16
